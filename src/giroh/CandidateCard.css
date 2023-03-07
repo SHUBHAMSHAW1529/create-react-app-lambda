@@ -1,0 +1,40 @@
+.card {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+  
+.image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  width: 60px;
+  font-size: 24px;
+  font-weight: bold;
+  background-color: #ddd;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.info {
+  flex: 1;
+}
+
+h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.CandidateList {
+  padding-top: 70px; 
+}
