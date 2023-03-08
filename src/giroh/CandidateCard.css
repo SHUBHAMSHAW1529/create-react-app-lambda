@@ -35,6 +35,29 @@ p {
   font-size: 14px;
 }
 
-.CandidateList {
-  padding-top: 70px; 
+.candidate-main {
+  display: flex;
+  height: 100%;
+  padding-top: 70px;
+}
+
+.candidate-list {
+  flex: 0 0 auto;
+  overflow-y: scroll;
+  width: calc(100% - 500px);
+}
+
+.candidate-side-panel {
+  flex: 0 0 auto;
+  position: fixed;
+  right: 0;
+  top: 70px;
+  bottom: 0;
+  height: 100%;
+  width: 500px;
+  padding-left: 10px;
+}
+
+* {
+  box-sizing: border-box;
 }

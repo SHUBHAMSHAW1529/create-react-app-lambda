@@ -1,11 +1,14 @@
 import React, { Component } from "react"
 import CandidateCard from "./CandidateCard";
 import Header from "./Header";
+import CandidateSidePanel from "./CandidateSidePanel";
+
 class MainLayout extends Component {
   constructor(props) {
     super(props);
     this.state = {
-    data: [] };
+    data: [],
+    candidateSidePanelData: {} };
   }
 
   componentDidMount() {
@@ -13,7 +16,7 @@ class MainLayout extends Component {
       .then(response => response.json())
       .then(rawData => {
         const processedDataIntoRecords = this.processData(rawData);
-        this.setState({ data: processedDataIntoRecords });
+        this.setState({ data: processedDataIntoRecords,  candidateSidePanelData: processedDataIntoRecords[0] });
       })
       .catch(error => {
         console.log(error);
@@ -39,19 +42,41 @@ class MainLayout extends Component {
     return result;
   }
 
+  handleCandidateClick = (candidateSidePanelData) => {
+    this.setState({ ...this.state, candidateSidePanelData : candidateSidePanelData});
+  }
+
+  appliedJobs = [
+    { id: 1, title: 'Software Engineer at Meta' },
+    { id: 2, title: 'Software Engineer at Google' },
+    { id: 3, title: 'Software Engineer at Roku' }
+  ];
   render() {
     return (
         <div>
             <Header></Header>
-            <div className="CandidateList" >
-                {this.state.data.map((candidate, index) => (
-                    <CandidateCard 
-                        key={index} 
-                        name={candidate.Name}
-                        email={candidate.Email}
-                        phone={candidate.Contact}>
-                    </CandidateCard>
-                ))}
+            <div className="candidate-main">
+                <div className="candidate-list" >
+                    {this.state.data.map((candidate, index) => (
+                        <CandidateCard 
+                            key={index} 
+                            candidateData={candidate}
+                            onCandidateCardClick={this.handleCandidateClick}
+                        >
+                        </CandidateCard>
+                    ))}
+                </div>
+                <div className="candidate-side-panel">
+                    {
+                        this.state.candidateSidePanelData &&
+                        <CandidateSidePanel 
+                            candidate={this.state.candidateSidePanelData}
+                            appliedJobs={this.appliedJobs}
+                        >
+                        </CandidateSidePanel>
+                    }
+                        
+                </div>
             </div>
         </div>
     )
